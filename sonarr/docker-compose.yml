@@ -11,7 +11,7 @@ services:
     volumes:
       - /home/pi/Projects/Sonarr/config:/config
       - /media/pi/Seagate Basic/Media/Shows:/tv
-      - /media/pi/Seagate Basic/Torrents:/downloads
+      - /media/pi/Seagate Basic/Media/Torrents:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
