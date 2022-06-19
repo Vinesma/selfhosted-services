@@ -6,7 +6,7 @@ services:
     container_name: jellyfin
     network_mode: "host"
     volumes:
-      - /path/to/config:/config
-      - /path/to/cache:/cache
-      - /path/to/media:/media
+      - /home/pi/Projects/Jellyfin/config:/config
+      - /home/pi/Projects/Jellyfin/cache:/cache
+      - /media/pi/Seagate Basic/Media:/media
     restart: "unless-stopped"
