@@ -9,9 +9,9 @@ services:
       - PGID=1000 #to find use: $ id $USER
       - TZ=America/Sao_Paulo
     volumes:
-      - /path/to/data:/config
-      - /path/to/tvseries:/tv
-      - /path/to/downloadclient-downloads:/downloads
+      - /home/pi/Projects/Sonarr/config:/config
+      - /media/pi/Seagate Basic/Media/Shows:/tv
+      - /media/pi/Seagate Basic/Torrents:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
