@@ -10,8 +10,8 @@ services:
       - TZ=America/Sao_Paulo
       - WEBUI_PORT=8080
     volumes:
-      - /path/to/appdata/config:/config
-      - /path/to/downloads:/downloads
+      - /home/pi/Projects/Qbittorrent/config:/config
+      - /media/pi/Seagate Basic/Media/Torrents:/downloads
     ports:
       - 8080:8080
       - 6881:6881
