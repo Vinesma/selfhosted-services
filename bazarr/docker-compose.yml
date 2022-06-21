@@ -9,9 +9,9 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /path/to/bazarr/config:/config
-      - /path/to/movies:/movies
-      - /path/to/tv:/tv
+      - /home/pi/Projects/Bazarr/config:/config
+      - /media/pi/Seagate Basic/Media/Movies:/data/movies
+      - /media/pi/Seagate Basic/Media/Shows:/data/tv
     ports:
       - 6767:6767
     restart: unless-stopped
