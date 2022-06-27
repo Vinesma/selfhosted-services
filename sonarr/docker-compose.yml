@@ -10,8 +10,8 @@ services:
       - TZ=America/Sao_Paulo
     volumes:
       - /path/to/data:/config
-      - /path/to/tvseries:/tv #optional
-      - /path/to/downloadclient-downloads:/downloads #optional
+      - /path/to/tvseries:/tv
+      - /path/to/downloadclient-downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped

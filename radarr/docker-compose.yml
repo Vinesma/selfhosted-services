@@ -10,8 +10,8 @@ services:
       - TZ=America/Sao_Paulo
     volumes:
       - /path/to/data:/config
-      - /path/to/movies:/movies #optional
-      - /path/to/downloadclient-downloads:/downloads #optional
+      - /path/to/movies:/movies
+      - /path/to/downloadclient-downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped

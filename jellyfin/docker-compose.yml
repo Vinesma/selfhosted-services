@@ -6,7 +6,7 @@ services:
     container_name: jellyfin
     network_mode: "host"
     volumes:
-      - /path/to/config:/config #EDIT
-      - /path/to/cache:/cache   #EDIT
-      - /path/to/media:/media   #EDIT
+      - /path/to/config:/config
+      - /path/to/cache:/cache
+      - /path/to/media:/media
     restart: "unless-stopped"
