@@ -21,14 +21,16 @@ dl_throw_error() {
 $twitch_donwloader -m ChatDownload -o chat.json -u "${stream_link##*/}" \
     || dl_throw_error 1 "Chat download failed."
 
-# Render chat & download stream
+# Render chat
 $twitch_donwloader \
     --mode ChatRender --input chat.json \
     --chat-height "1080" --chat-width 300 \
     --framerate 30 --update-rate 0 --font-size 12 \
-    --outline --generate-mask --output chat.mp4 || dl_throw_error 1 "Chat failed to render." &
+    --outline --generate-mask --background-color "#00000000" \
+    --output chat.mp4 || dl_throw_error 1 "Chat failed to render."
 
-yt-dlp -f 720p60 "$stream_link" || dl_throw_error 1 "Video failed to download." &
+# Download stream
+yt-dlp -f 720p60 "$stream_link" || dl_throw_error 1 "Video failed to download."
 
 # Wait for both jobs to end
 while [[ $(jobs | wc -l) -ge 1 ]]; do
