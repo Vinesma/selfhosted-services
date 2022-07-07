@@ -3,8 +3,9 @@
 # Uses yt-dlp + ffmpeg to download twitch streams with embedded chat
 # VERY resource intensive
 
-input_file=$1
-twitch_donwloader=$2
+twitch_donwloader=$1
+input_file=$2
+destination_dir=$3
 stream_link=$(head -n 1 "$input_file")
 resolution=480
 
@@ -21,6 +22,7 @@ dl_clean() {
     rm chat_mask.mp4
     rm chat.json
     rm stream_raw.mp4
+    sed '1d' "$input_file"
 }
 
 [[ -z $stream_link ]] && dl_throw_error 1 "No streams to fetch."
@@ -51,8 +53,9 @@ yt-dlp -o "stream_raw.%(ext)s" -f "${resolution}p" "$stream_link" || dl_throw_er
 
 # Overlay chat over stream
 ffmpeg \
-    -ss 20 \
+    -ss 10 \
     -i chat.mp4 \
+    -ss 10 \
     -i chat_mask.mp4 \
     -i stream_raw.mp4 \
     -filter_complex '[0][1]alphamerge[ia];[2][ia]overlay=main_w-overlay_w:0' \
@@ -62,3 +65,7 @@ ffmpeg \
     -crf 26 \
     burned.mp4 && \
     dl_clean
+
+# Move completed file to destination
+cd ..
+mv -v "$stream_title" "$destination_dir"
