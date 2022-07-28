@@ -1,0 +1,18 @@
+{
+    email {example@host.com}
+}
+subdomain.com {
+    tls {
+        dns {provider} {token}
+    }
+
+    route /{service}/* {
+        uri strip_prefix /{service}
+        reverse_proxy :{sub_port} {
+            header_up X-Forwarded-Prefix "/{service}"
+        }
+    }
+    redir /{service} /{service}/
+
+    reverse_proxy :{main_port}
+}
