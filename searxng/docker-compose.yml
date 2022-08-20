@@ -5,10 +5,10 @@ services:
     image: searxng/searxng:latest
     container_name: searxng
     environment:
-      - BASE_URL=http://localhost:7560
+      - BASE_URL=https://your.domain.here/location
       - INSTANCE_NAME=searxngpi
     volumes:
       - /path/to/data:/etc/searxng
     ports:
-      - 7560:7560
+      - 7560:8080
     restart: unless-stopped
