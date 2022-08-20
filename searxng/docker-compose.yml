@@ -1,0 +1,14 @@
+version: "2.1"
+
+services:
+  searxng:
+    image: searxng/searxng
+    container_name: searxng
+    environment:
+      - BASE_URL=http://localhost:7560
+      - INSTANCE_NAME=searxngpi
+    volumes:
+      - /path/to/data:/etc/searxng
+    ports:
+      - 7560:7560
+    restart: unless-stopped
