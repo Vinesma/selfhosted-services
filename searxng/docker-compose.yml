@@ -3,7 +3,7 @@ services:
     image: searxng/searxng:latest
     container_name: searxng
     environment:
-      - BASE_URL=https://your.domain.here/location
+      - BASE_URL=https://vinesma.duckdns.org/searx/
       - INSTANCE_NAME=searxngpi
     volumes:
       - /home/pi/Projects/Searx/searxng:/etc/searxng
