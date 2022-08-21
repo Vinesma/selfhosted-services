@@ -14,10 +14,10 @@ services:
         max-size: 10m
     volumes:
       - data:/var/www/FreshRSS/data
-      - extensions:/var/www/FreshRSS/extensions
+      - /home/pi/Projects/Freshrss/extensions:/var/www/FreshRSS/extensions
     ports:
-      - "8650:80"
+      - 8650:80
     environment:
       TZ: America/Sao_Paulo
       FRESHRSS_ENV: development
-      CRON_MIN: '1,31'
+      CRON_MIN: '1'
