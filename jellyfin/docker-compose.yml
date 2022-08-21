@@ -5,6 +5,8 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     network_mode: "host"
+    environment:
+      - TZ=America/Sao_Paulo
     volumes:
       - /path/to/config:/config
       - /path/to/cache:/cache
