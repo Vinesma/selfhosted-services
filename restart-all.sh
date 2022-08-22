@@ -2,4 +2,4 @@
 # Restart all containers in this folder
 #
 
-find . -name 'docker-compose.yml' -exec sudo docker-compose -f {} restart \;
+find . -name 'docker-compose.yml' -exec docker compose -f {} restart \;

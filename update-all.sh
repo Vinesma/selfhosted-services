@@ -3,5 +3,5 @@
 #
 
 find . -name 'docker-compose.yml' \
-    -exec sudo docker-compose -f {} pull \; \
-    -exec sudo docker-compose -f {} up -d \;
+    -exec docker compose -f {} pull \; \
+    -exec docker compose -f {} up -d \;
