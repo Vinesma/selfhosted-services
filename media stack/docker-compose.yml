@@ -77,3 +77,4 @@ services:
     depends_on:
       - sonarr
       - radarr
+      - bazarr
