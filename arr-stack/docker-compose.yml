@@ -34,8 +34,8 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /path/to/data:/config
-      - /path/to/media-dir:/data
+      - /home/pi/Projects/Radarr/config:/config
+      - /media/pi/Seagate Basic/Media:/data
     ports:
       - 7878:7878
     restart: no
