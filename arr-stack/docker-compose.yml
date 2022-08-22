@@ -20,8 +20,8 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /path/to/data:/config
-      - /path/to/media-dir:/data
+      - /home/pi/Projects/Sonarr/config:/config
+      - /media/pi/Seagate Basic/Media:/data
     ports:
       - 8989:8989
     restart: no
