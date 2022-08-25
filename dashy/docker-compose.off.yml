@@ -3,7 +3,7 @@ services:
     image: lissy93/dashy:latest
     container_name: dashy
     volumes:
-      - /path/to/conf.yml:/app/public/conf.yml
+      - /home/pi/Projects/Dashy/public/conf.yml:/app/public/conf.yml
     ports:
       - 7575:80
     environment:
