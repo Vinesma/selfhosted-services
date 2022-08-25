@@ -78,3 +78,22 @@ services:
       - sonarr
       - radarr
       - bazarr
+
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Sao_Paulo
+    volumes:
+      - /path/to/config:/config
+      - /path/to/backups:/backups
+      - /path/to/source:/source
+    ports:
+      - 8200:8200
+    restart: unless-stopped
+    depends_on:
+      - sonarr
+      - radarr
+      - bazarr
