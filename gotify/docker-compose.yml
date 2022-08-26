@@ -5,7 +5,7 @@ services:
     environment:
       - TZ=America/Sao_Paulo
     volumes:
-      - /home/pi/Projects/Gotify/data:/app/data
+      - /home/pi/Services/Gotify/data:/app/data
     ports:
       - 7561:80
     restart: no

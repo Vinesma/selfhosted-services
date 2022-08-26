@@ -20,7 +20,7 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /home/pi/Projects/Sonarr/config:/config
+      - /home/pi/Services/Sonarr/config:/config
       - /media/pi/Seagate Basic/Media:/data
     ports:
       - 8989:8989
@@ -34,7 +34,7 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /home/pi/Projects/Radarr/config:/config
+      - /home/pi/Services/Radarr/config:/config
       - /media/pi/Seagate Basic/Media:/data
     ports:
       - 7878:7878
@@ -62,7 +62,7 @@ services:
       - TZ=America/Sao_Paulo
       - WEBUI_PORT=8080
     volumes:
-      - /home/pi/Projects/Qbittorrent/config:/config
+      - /home/pi/Services/Qbittorrent/config:/config
       - /media/pi/Seagate Basic/Media/Torrents:/data/Torrents
     ports:
       - 8080:8080
