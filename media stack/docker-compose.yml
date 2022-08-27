@@ -55,23 +55,14 @@ services:
       - 6767:6767
     restart: unless-stopped
 
-  komga:
-    image: gotson/komga
-    container_name: komga
+  kavita:
+    image: kizaing/kavita:latest
+    container_name: kavita
     volumes:
-      - type: bind
-        source: /path/to/config
-        target: /config
-      - type: bind
-        source: /path/to/data
-        target: /data
-      - type: bind
-        source: /etc/timezone
-        target: /etc/timezone
-        read_only: true
+      - /path/to/config:/kavita/config
+      - /path/to/media:/manga
     ports:
-      - 8686:8080
-    user: 1000:1000
+      - 8686:5000
     restart: unless-stopped
 
   qbittorrent:
@@ -94,4 +85,4 @@ services:
       - sonarr
       - radarr
       - bazarr
-      - komga
+      - kavita
