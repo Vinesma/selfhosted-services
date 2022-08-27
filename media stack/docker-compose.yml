@@ -54,9 +54,25 @@ services:
     ports:
       - 6767:6767
     restart: unless-stopped
-    depends_on:
-      - sonarr
-      - radarr
+
+  komga:
+    image: gotson/komga
+    container_name: komga
+    volumes:
+      - type: bind
+        source: /path/to/config
+        target: /config
+      - type: bind
+        source: /path/to/data
+        target: /data
+      - type: bind
+        source: /etc/timezone
+        target: /etc/timezone
+        read_only: true
+    ports:
+      - 8686:8080
+    user: 1000:1000
+    restart: unless-stopped
 
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -78,3 +94,4 @@ services:
       - sonarr
       - radarr
       - bazarr
+      - komga
