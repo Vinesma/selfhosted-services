@@ -9,7 +9,7 @@ sponsorblock_categories=$4
 
 podcasts_base_dir="/media/pi/Seagate Basic/Media/Podcasts/$podcast_name"
 downloader=/usr/local/bin/yt-dlp
-notification_url="https://vinesma.duckdns.org/notifications/message?token=$token"
+notification_url="https://notify.vinesma.duckdns.org/message?token=$token"
 
 cd "$podcasts_base_dir" || { printf "%s\n" "Couldn't cd into directory: '$podcasts_base_dir'"; exit 1; }
 
