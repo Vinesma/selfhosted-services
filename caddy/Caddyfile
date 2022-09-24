@@ -1,7 +1,7 @@
 {
     email {example@host.com}
 }
-subdomain.com {
+domain.com {
     tls {
         dns {provider} {token}
     }
@@ -15,4 +15,14 @@ subdomain.com {
     redir /{service} /{service}/
 
     reverse_proxy :{main_port}
+}
+subdomain.domain.com {
+    tls {
+        dns {provider} {token}
+    }
+    reverse_proxy :{main_port} {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
 }
