@@ -14,7 +14,7 @@ services:
         max-size: 10m
     volumes:
       - data:/var/www/FreshRSS/data
-      - /media/pi/Seagate Basic/Services/Freshrss/extensions:/var/www/FreshRSS/extensions
+      - /media/pi/ExtDrive/storage/Services/Freshrss/extensions:/var/www/FreshRSS/extensions
     ports:
       - 8650:80
     environment:

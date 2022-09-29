@@ -20,8 +20,8 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /media/pi/Seagate Basic/Services/Sonarr/config:/config
-      - /media/pi/Seagate Basic/Media:/data
+      - /media/pi/ExtDrive/storage/Services/Sonarr/config:/config
+      - /media/pi/ExtDrive/storage/Media:/data
     ports:
       - 8989:8989
     restart: no
@@ -34,8 +34,8 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /media/pi/Seagate Basic/Services/Radarr/config:/config
-      - /media/pi/Seagate Basic/Media:/data
+      - /media/pi/ExtDrive/storage/Services/Radarr/config:/config
+      - /media/pi/ExtDrive/storage/Media:/data
     ports:
       - 7878:7878
     restart: no
@@ -62,8 +62,8 @@ services:
       - TZ=America/Sao_Paulo
       - WEBUI_PORT=8080
     volumes:
-      - /media/pi/Seagate Basic/Services/Qbittorrent/config:/config
-      - /media/pi/Seagate Basic/Media/Torrents:/data/Torrents
+      - /media/pi/ExtDrive/storage/Services/Qbittorrent/config:/config
+      - /media/pi/ExtDrive/storage/Media/Torrents:/data/Torrents
     ports:
       - 8080:8080
       - 6881:6881
