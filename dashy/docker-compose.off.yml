@@ -3,7 +3,7 @@ services:
     image: lissy93/dashy:latest
     container_name: dashy
     volumes:
-      - /media/pi/Seagate Basic/Services/Dashy/public/conf.yml:/app/public/conf.yml
+      - /media/pi/ExtDrive/storage/Services/Dashy/public/conf.yml:/app/public/conf.yml
     ports:
       - 7575:80
     environment:

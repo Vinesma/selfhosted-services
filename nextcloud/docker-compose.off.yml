@@ -7,8 +7,9 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /media/pi/Seagate Basic/Services/Nextcloud/config:/config
-      - /media/pi/Seagate Basic/Services/Nextcloud/data:/data
+      - /media/pi/ExtDrive/storage/Services/Nextcloud/config:/config
+      - /media/pi/ExtDrive/storage/Services/Nextcloud/data:/data
+      - /media/pi/ExtDrive/storage/Media:/media
     ports:
       - 7562:443
     restart: no
