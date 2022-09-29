@@ -7,7 +7,7 @@ token=$3
 # OPTIONAL
 sponsorblock_categories=$4
 
-podcasts_base_dir="/media/pi/Seagate Basic/Media/Podcasts/$podcast_name"
+podcasts_base_dir="/media/pi/ExtDrive/storage/Media/Podcasts/$podcast_name"
 downloader=/usr/local/bin/yt-dlp
 notification_url="https://notify.vinesma.duckdns.org/message?token=$token"
 
