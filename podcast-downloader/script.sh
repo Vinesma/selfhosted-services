@@ -18,5 +18,5 @@ $downloader -q \
     --download-archive archive.log \
     --sponsorblock-remove "${sponsorblock_categories:-sponsor}" \
     -o '%(title)s/%(title)s [%(id)s].%(ext)s' \
-    --exec "/usr/bin/curl -s $notification_url -F title='Podcast Added' -F message='%(title)s' -F priority=4" \
+    --exec "/usr/bin/curl -s $notification_url -F title='Podcast Added' -F message=\"%(title)s\" -F priority=4" \
     "https://www.youtube.com/playlist?list=$yt_playlist_id"
