@@ -9,9 +9,9 @@ services:
       - GID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /path/to/configs:/app/data/configs
-      - /path/to/data:/data
-      - /path/to/icons:/app/public/icons
+      - /media/pi/ExtDrive/storage/Services/Homarr/configs:/app/data/configs
+      - /media/pi/ExtDrive/storage/Services/Homarr/data:/data
+      - /media/pi/ExtDrive/storage/Services/Homarr/icons:/app/public/icons
     ports:
       - 7575:7575
     restart: no
