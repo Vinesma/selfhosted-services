@@ -11,4 +11,4 @@ services:
       - /path/to/data:/etc/searxng
     ports:
       - 7560:8080
-    restart: unless-stopped
+    restart: on-failure

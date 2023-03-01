@@ -10,4 +10,4 @@ services:
       - /path/to/data:/app/data
     ports:
       - 7561:80
-    restart: unless-stopped
+    restart: on-failure
