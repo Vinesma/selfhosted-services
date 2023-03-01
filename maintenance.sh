@@ -38,7 +38,7 @@ while :; do
 done
 
 # shellcheck source=/dev/null
-source ../scripts/send-notification \
+source ./scripts/send-notification \
     -k "$token" \
     --title "Maintenance starting soon..." \
     --message "Services may become unavailable for the duration of the maintenance window."
@@ -73,7 +73,7 @@ else
     sleep 1m
 
     # shellcheck source=/dev/null
-    source ../scripts/send-notification \
+    source ./scripts/send-notification \
         -k "$token" \
         --title "Maintenance finished." \
         --message "It is recommended to check your services for any abnormalities."
