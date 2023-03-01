@@ -2,6 +2,11 @@
 # Perform general maintenance in this machine
 #
 
+repo_path=''
+token=''
+rebooted=
+should_log=
+
 show_help() {
     printf "%s\n" \
         "Maintenance script for updating this machine" \
@@ -11,8 +16,12 @@ show_help() {
         "-r, --rebooted    Run commands meant for a machine that was just rebooted."
 }
 
-token=''
-rebooted=
+print_and_log() {
+    if [[ -n $should_log ]]; then
+        printf "[LOG $(date +\"%T\")]: %s\n" "$@" >> "$repo_path/maintenance.log"
+    fi
+    printf "%s\n" "$@"
+}
 
 while :; do
     case $1 in
@@ -22,6 +31,9 @@ while :; do
             ;;
         -r|--rebooted)   # Run post-reboot commands
             rebooted=true
+            ;;
+        -l|--log)       # Enable logging
+            should_log=true
             ;;
         --)              # End of all options.
             shift
@@ -37,51 +49,55 @@ while :; do
     shift
 done
 
-# shellcheck source=/dev/null
-source ./scripts/send-notification \
-    -k "$token" \
-    --title "Maintenance starting soon..." \
-    --message "Services may become unavailable for the duration of the maintenance window."
-sleep 30s
-
 if [[ -z $rebooted ]]; then
     # Normal operations
+    source "$repo_path/scripts/send-notification.sh" \
+        -k "$token" \
+        --title "Maintenance starting soon..." \
+        --message "Services may become unavailable for the duration of the maintenance window."
+    sleep 30s
 
-    # Update packages
-    printf "%s\n" "Updating distro packages..."
+    print_and_log "Updating distro packages..."
     if [[ $EUID -ne 0 ]]; then
         sudo apt update && sudo apt full-upgrade -y
     else
         apt update && apt full-upgrade -y
     fi
 
-    printf "\n%s\n" "Done for now, rebooting in 3 seconds..."
-    sleep 3s
-    sudo reboot
-else
-    # Post-reboot operations
+    source "$repo_path/down-all.sh"
 
-    # shellcheck source=/dev/null
-    source ./down-all.sh
-    # shellcheck source=/dev/null
-    source ./update-all.sh
+    print_and_log "Done for now, rebooting in 3 seconds..."
+    sleep 3s
 
     if [[ $EUID -ne 0 ]]; then
-        # Update nextcloud docker
-        printf "%s\n" "Updating Nextcloud..."
-        /usr/bin/docker exec -it nextcloud updater.phar
+        sudo reboot
+    else
+        reboot
+    fi
+else
+    print_and_log "Rebooted..."
+    if [[ $EUID -eq 0 ]]; then
+        print_and_log "Root shouldn't run this script. Use a normal user account."
+        exit 1
     fi
 
-    printf "%s\n" "Starting Syncthing..."
+    # Post-reboot operations
+    source "$repo_path/update-all.sh"
+
+    # Update nextcloud
+    print_and_log "Updating Nextcloud..."
+    /usr/bin/docker exec -it nextcloud updater.phar --no-interaction
+
+    print_and_log "Starting Syncthing..."
     { /usr/bin/syncthing --gui-address=0.0.0.0:8384 --no-browser & disown; } &> /dev/null
 
-    printf "\n%s\n" "Waiting for about a minute for services to stabilize..."
+    print_and_log "Waiting for about a minute for services to stabilize..."
     sleep 1m
 
     # shellcheck source=/dev/null
-    source ./scripts/send-notification \
+    source "$repo_path/scripts/send-notification.sh" \
         -k "$token" \
-        --title "Maintenance finished." \
+        --title "Raspberry Pi has rebooted successfully." \
         --message "It is recommended to check your services for any abnormalities."
-    printf "\n%s\n" "Maintenance finished!"
+    print_and_log "Maintenance finished!"
 fi
