@@ -49,7 +49,11 @@ if [[ -z $rebooted ]]; then
 
     # Update packages
     printf "%s\n" "Updating distro packages..."
-    sudo apt update && sudo apt full-upgrade -y
+    if [[ $EUID -ne 0 ]]; then
+        sudo apt update && sudo apt full-upgrade -y
+    else
+        apt update && apt full-upgrade -y
+    fi
 
     printf "\n%s\n" "Done for now, rebooting in 3 seconds..."
     sleep 3s
@@ -62,12 +66,14 @@ else
     # shellcheck source=/dev/null
     source ./update-all.sh
 
-    # Update nextcloud docker
-    printf "%s\n" "Updating Nextcloud..."
-    docker exec -it nextcloud updater.phar
+    if [[ $EUID -ne 0 ]]; then
+        # Update nextcloud docker
+        printf "%s\n" "Updating Nextcloud..."
+        /usr/bin/docker exec -it nextcloud updater.phar
+    fi
 
     printf "%s\n" "Starting Syncthing..."
-    { syncthing --gui-address=0.0.0.0:8384 --no-browser & disown; } &> /dev/null
+    { /usr/bin/syncthing --gui-address=0.0.0.0:8384 --no-browser & disown; } &> /dev/null
 
     printf "\n%s\n" "Waiting for about a minute for services to stabilize..."
     sleep 1m
