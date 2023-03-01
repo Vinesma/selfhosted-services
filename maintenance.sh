@@ -3,7 +3,7 @@
 #
 
 repo_path=''
-token=''
+token='AYy2M5D.2VJpWQn'
 rebooted=
 
 show_help() {
