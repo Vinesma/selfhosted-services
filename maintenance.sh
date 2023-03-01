@@ -2,7 +2,7 @@
 # Perform general maintenance in this machine
 #
 
-repo_path=''
+repo_path='/home/pi/Projects/selfhosted-services'
 token='AYy2M5D.2VJpWQn'
 rebooted=
 
