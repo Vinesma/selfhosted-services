@@ -13,6 +13,7 @@ show_help() {
         "Usage: maintenance.sh [OPTIONS]" \
         "Options:" \
         "-h, --help        Show this help text and exit." \
+        "-l, --log         Enable logging." \
         "-r, --rebooted    Run commands meant for a machine that was just rebooted."
 }
 
@@ -57,22 +58,28 @@ if [[ -z $rebooted ]]; then
         --message "Services may become unavailable for the duration of the maintenance window."
     sleep 30s
 
-    print_and_log "Updating distro packages..."
     if [[ $EUID -ne 0 ]]; then
+        print_and_log "Updating distro packages..."
         sudo apt update && sudo apt full-upgrade -y
-    else
-        apt update && apt full-upgrade -y
-    fi
 
-    source "$repo_path/down-all.sh"
+        print_and_log "Stopping containers..."
+        source "$repo_path/down-all.sh"
 
-    print_and_log "Done for now, rebooting in 3 seconds..."
-    sleep 3s
+        print_and_log "Done for now, rebooting in 3 seconds..."
+        sleep 3s
 
-    if [[ $EUID -ne 0 ]]; then
         sudo reboot
     else
-        reboot
+        print_and_log "Updating distro packages..."
+        apt update && apt full-upgrade -y
+
+        print_and_log "Stopping containers..."
+        source "$repo_path/down-all.sh"
+
+        print_and_log "Done for now, rebooting in 3 seconds..."
+        sleep 3s
+
+        /usr/sbin/reboot
     fi
 else
     print_and_log "Rebooted..."
@@ -82,6 +89,7 @@ else
     fi
 
     # Post-reboot operations
+    print_and_log "Updating containers..."
     source "$repo_path/update-all.sh"
 
     # Update nextcloud
