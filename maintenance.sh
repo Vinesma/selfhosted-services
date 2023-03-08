@@ -21,7 +21,7 @@ print_and_log() {
     if [[ -n $should_log ]]; then
         printf "[LOG $(date +\"%T\")]: %s\n" "$@" >> "$repo_path/maintenance.log"
     fi
-    printf "%s\n" "$@"
+    printf "[$(date +\"%T\")]: %s\n" "$@"
 }
 
 while :; do
