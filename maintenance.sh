@@ -5,7 +5,6 @@
 repo_path=''
 token=''
 rebooted=
-should_log=
 
 show_help() {
     printf "%s\n" \
@@ -13,14 +12,10 @@ show_help() {
         "Usage: maintenance.sh [OPTIONS]" \
         "Options:" \
         "-h, --help        Show this help text and exit." \
-        "-l, --log         Enable logging." \
         "-r, --rebooted    Run commands meant for a machine that was just rebooted."
 }
 
 print_and_log() {
-    if [[ -n $should_log ]]; then
-        printf "[LOG $(date +\"%T\")]: %s\n" "$@" >> "$repo_path/maintenance.log"
-    fi
     printf "[$(date +\"%T\")]: %s\n" "$@"
 }
 
@@ -32,9 +27,6 @@ while :; do
             ;;
         -r|--rebooted)   # Run post-reboot commands
             rebooted=true
-            ;;
-        -l|--log)       # Enable logging
-            should_log=true
             ;;
         --)              # End of all options.
             shift
