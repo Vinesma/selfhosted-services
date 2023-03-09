@@ -69,7 +69,7 @@ if [[ -z $rebooted ]]; then
         source "$repo_path/down-all.sh"
 
         print_timestamp "Creating reboot lock file."
-        touch "$repo_path/maintenance.lock"
+        /usr/bin/touch "$repo_path/maintenance.lock"
 
         print_timestamp "Done for now, rebooting in 3 seconds..."
         sleep 3s
