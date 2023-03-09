@@ -15,7 +15,7 @@ show_help() {
         "-r, --rebooted    Run commands meant for a machine that was just rebooted."
 }
 
-print_and_log() {
+print_timestamp() {
     printf "[$(date +\"%T\")]: %s\n" "$@"
 }
 
@@ -51,47 +51,47 @@ if [[ -z $rebooted ]]; then
     sleep 30s
 
     if [[ $EUID -ne 0 ]]; then
-        print_and_log "Updating distro packages..."
+        print_timestamp "Updating distro packages..."
         sudo apt update && sudo apt full-upgrade -y
 
-        print_and_log "Stopping containers..."
+        print_timestamp "Stopping containers..."
         source "$repo_path/down-all.sh"
 
-        print_and_log "Done for now, rebooting in 3 seconds..."
+        print_timestamp "Done for now, rebooting in 3 seconds..."
         sleep 3s
 
         sudo reboot
     else
-        print_and_log "Updating distro packages..."
+        print_timestamp "Updating distro packages..."
         apt update && apt full-upgrade -y
 
-        print_and_log "Stopping containers..."
+        print_timestamp "Stopping containers..."
         source "$repo_path/down-all.sh"
 
-        print_and_log "Done for now, rebooting in 3 seconds..."
+        print_timestamp "Done for now, rebooting in 3 seconds..."
         sleep 3s
 
         /usr/sbin/reboot
     fi
 else
-    print_and_log "Rebooted..."
+    print_timestamp "Rebooted..."
     if [[ $EUID -eq 0 ]]; then
-        print_and_log "Root shouldn't run this script. Use a normal user account."
+        print_timestamp "Root shouldn't run this script. Use a normal user account."
         exit 1
     fi
 
     # Post-reboot operations
-    print_and_log "Updating containers..."
+    print_timestamp "Updating containers..."
     source "$repo_path/update-all.sh"
 
     # Update nextcloud
-    print_and_log "Updating Nextcloud..."
+    print_timestamp "Updating Nextcloud..."
     /usr/bin/docker exec -it nextcloud updater.phar --no-interaction
 
-    print_and_log "Starting Syncthing..."
+    print_timestamp "Starting Syncthing..."
     { /usr/bin/syncthing --gui-address=0.0.0.0:8384 --no-browser & disown; } &> /dev/null
 
-    print_and_log "Waiting for about a minute for services to stabilize..."
+    print_timestamp "Waiting for about a minute for services to stabilize..."
     sleep 1m
 
     # shellcheck source=/dev/null
@@ -99,5 +99,5 @@ else
         -k "$token" \
         --title "Raspberry Pi has rebooted successfully." \
         --message "It is recommended to check your services for any abnormalities."
-    print_and_log "Maintenance finished!"
+    print_timestamp "Maintenance finished!"
 fi
