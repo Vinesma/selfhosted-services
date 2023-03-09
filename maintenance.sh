@@ -68,6 +68,9 @@ if [[ -z $rebooted ]]; then
         print_timestamp "Stopping containers..."
         source "$repo_path/down-all.sh"
 
+        print_timestamp "Creating reboot lock file."
+        touch "$repo_path/maintenance.lock"
+
         print_timestamp "Done for now, rebooting in 3 seconds..."
         sleep 3s
 
@@ -80,13 +83,20 @@ else
         exit 1
     fi
 
-    # Post-reboot operations
-    print_timestamp "Updating containers..."
-    source "$repo_path/update-all.sh"
+    if [[ -e "$repo_path/maintenance.lock" ]]; then
+        # This reboot was for maintenance. Updates should be made.
+        print_timestamp "Updating containers..."
+        source "$repo_path/update-all.sh"
 
-    # Update nextcloud
-    print_timestamp "Updating Nextcloud..."
-    /usr/bin/docker exec -it nextcloud updater.phar --no-interaction
+        print_timestamp "Updating Nextcloud..."
+        /usr/bin/docker exec -it nextcloud updater.phar --no-interaction
+
+        rm -f "$repo_path/maintenance.lock"
+    else
+        # This was a normal reboot. No need for updates.
+        print_timestamp "Starting containers..."
+        source "$repo_path/up-all.sh"
+    fi
 
     print_timestamp "Starting Syncthing..."
     { /usr/bin/syncthing --gui-address=0.0.0.0:8384 --no-browser & disown; } &> /dev/null
