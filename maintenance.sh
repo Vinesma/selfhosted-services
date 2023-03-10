@@ -51,19 +51,30 @@ if [[ -z $rebooted ]]; then
     sleep 30s
 
     if [[ $EUID -ne 0 ]]; then
+        # Not Root
         print_timestamp "Updating distro packages..."
         sudo apt update && sudo apt full-upgrade -y
 
+        print_timestamp "Updating yt-dlp..."
+        sudo yt-dlp -U
+
         print_timestamp "Stopping containers..."
         source "$repo_path/down-all.sh"
+
+        print_timestamp "Creating reboot lock file."
+        touch "$repo_path/maintenance.lock"
 
         print_timestamp "Done for now, rebooting in 3 seconds..."
         sleep 3s
 
         sudo reboot
     else
+        # Root
         print_timestamp "Updating distro packages..."
         apt update && apt full-upgrade -y
+
+        print_timestamp "Updating yt-dlp..."
+        /usr/local/bin/yt-dlp -U
 
         print_timestamp "Stopping containers..."
         source "$repo_path/down-all.sh"
