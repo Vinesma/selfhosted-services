@@ -2,4 +2,4 @@
 # Stop all containers in this folder
 #
 
-find . -name 'docker-compose.yml' -exec docker compose -f {} down \;
+find . -name 'docker-compose.yml' -exec /usr/bin/docker compose -f {} down \;
