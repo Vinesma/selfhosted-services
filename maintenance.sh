@@ -81,6 +81,8 @@ if [[ -z $rebooted ]]; then
 
         print_timestamp "Creating reboot lock file."
         /usr/bin/touch "$repo_path/maintenance.lock"
+        chown pi "$repo_path/maintenance.lock"
+        chgrp pi "$repo_path/maintenance.lock"
 
         print_timestamp "Done for now, rebooting in 3 seconds..."
         sleep 3s
