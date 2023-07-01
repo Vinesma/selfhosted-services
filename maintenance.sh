@@ -100,10 +100,6 @@ else
         # This reboot was for maintenance. Updates should be made.
         print_timestamp "Updating containers..."
         source "$repo_path/update-all.sh"
-
-        print_timestamp "Updating Nextcloud..."
-        /usr/bin/docker exec -it nextcloud updater.phar --no-interaction
-
         rm -f "$repo_path/maintenance.lock"
     else
         # This was a normal reboot. No need for updates.
