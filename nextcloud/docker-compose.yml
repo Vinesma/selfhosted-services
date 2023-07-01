@@ -2,7 +2,7 @@ version: "2.1"
 
 services:
   nextcloud:
-    image: lscr.io/linuxserver/nextcloud:latest
+    image: linuxserver/nextcloud:arm64v8-26.0.2
     container_name: nextcloud
     environment:
       - PUID=1000
