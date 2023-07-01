@@ -1,0 +1,12 @@
+version: "3.5"
+
+services:
+  kavita:
+    image: kizaing/kavita:latest
+    container_name: kavita
+    volumes:
+      - /path/to/config:/kavita/config
+      - /path/to/media:/manga
+    ports:
+      - 8686:5000
+    restart: on-failure
