@@ -4,10 +4,10 @@ services:
     container_name: komga
     volumes:
       - type: bind
-        source: /path/to/config
+        source: /media/pi/ExtDrive/storage/Services/Komga/config
         target: /config
       - type: bind
-        source: /path/to/data
+        source: /media/pi/ExtDrive/storage/Media/Literature
         target: /data
     ports:
       - 25600:25600
