@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  komga:
+    image: gotson/komga
+    container_name: komga
+    volumes:
+      - type: bind
+        source: /path/to/config
+        target: /config
+      - type: bind
+        source: /path/to/data
+        target: /data
+    ports:
+      - 25600:25600
+    user: "1000:1000"
+    environment:
+      - TZ=America/Sao_Paulo
+      - JAVA_TOOL_OPTIONS=-Xmx2g
+    restart: on-failure
