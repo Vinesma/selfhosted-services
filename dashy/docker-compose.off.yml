@@ -13,7 +13,7 @@ services:
       - UID=1000
       - GID=1000
       - TZ=America/Sao_Paulo
-    restart: on-failure
+    restart: no
     healthcheck:
       test: ['CMD', 'node', '/app/services/healthcheck']
       interval: 3m

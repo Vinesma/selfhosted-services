@@ -9,4 +9,4 @@ services:
       - /path/to/media:/manga
     ports:
       - 8686:5000
-    restart: on-failure
+    restart: no

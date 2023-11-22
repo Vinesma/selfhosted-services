@@ -13,4 +13,4 @@ services:
       - /path/to/data:/data
     ports:
       - 7562:443
-    restart: on-failure
+    restart: no

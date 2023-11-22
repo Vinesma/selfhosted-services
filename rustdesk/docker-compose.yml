@@ -20,7 +20,7 @@ services:
       - rustdesk-net
     depends_on:
       - hbbr
-    restart: on-failure
+    restart: no
 
   hbbr:
     container_name: hbbr
@@ -33,4 +33,4 @@ services:
       - ./data:/root
     networks:
       - rustdesk-net
-    restart: on-failure
+    restart: no

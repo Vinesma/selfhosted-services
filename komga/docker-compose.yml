@@ -16,4 +16,4 @@ services:
     environment:
       - TZ=America/Sao_Paulo
       - JAVA_TOOL_OPTIONS=-Xmx2g
-    restart: on-failure
+    restart: no
