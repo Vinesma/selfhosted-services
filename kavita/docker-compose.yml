@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   kavita:
-    image: kizaing/kavita:latest
+    image: jvmilazz0/kavita:latest
     container_name: kavita
     volumes:
       - /path/to/config:/kavita/config
