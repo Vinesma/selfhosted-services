@@ -6,5 +6,5 @@ services:
     environment:
       - TZ=America/Sao_Paulo
     volumes:
-      - ./actual-data:/data
+      - /media/pi/ExtDrive/storage/Services/ActualBudget/data:/data
     restart: no
