@@ -16,6 +16,7 @@ cd "$podcasts_base_dir" || { printf "%s\n" "Couldn't cd into directory: '$podcas
 $downloader -q \
     -x --audio-format mp3 \
     --download-archive archive.log \
+    --max-downloads 5 \
     --sponsorblock-remove "${sponsorblock_categories:-sponsor}" \
     -o '%(title)s/%(title)s [%(id)s].%(ext)s' \
     --exec "/usr/bin/curl -s $notification_url -F title='Podcast Added' -F message=\"%(title)s\" -F priority=4" \
