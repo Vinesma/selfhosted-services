@@ -5,7 +5,7 @@ volumes:
 services:
 
   freshrss:
-    image: freshrss/freshrss:1.23.0-arm
+    image: freshrss/freshrss:1.23.1-arm
     container_name: freshrss
     hostname: freshrss
     restart: no
