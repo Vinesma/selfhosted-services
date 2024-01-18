@@ -5,8 +5,9 @@ volumes:
 services:
 
   freshrss:
-    image: freshrss/freshrss:latest
+    image: freshrss/freshrss:edge
     container_name: freshrss
+    platform: linux/arm/v7
     hostname: freshrss
     restart: no
     logging:
