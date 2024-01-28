@@ -50,7 +50,7 @@ services:
     ports:
         - 5055:5055
     volumes:
-        - /path/to/appdata/config:/app/config
+        - /media/pi/ExtDrive/storage/Services/Jellyseer/config:/app/config
     restart: no
 
   qbittorrent:
