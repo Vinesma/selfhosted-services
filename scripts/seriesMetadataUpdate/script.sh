@@ -12,7 +12,7 @@ while IFS= read -r SERIES; do
     series_desc=$(printf "%s" "${SERIES}" | cut -d " " -f2-)
     series_id=$(printf "%s" "${SERIES}" | cut -d " " -f1)
 
-    curl \
+    /usr/bin/curl \
         "${JF_SERVER_URL}/Items/${series_id}/Refresh?api_key=${JF_API_KEY}&Recursive=true&ImageRefreshMode=FullRefresh&MetadataRefreshMode=FullRefresh&ReplaceAllImages=true&ReplaceAllMetadata=true" \
         -X POST \
         -H 'TE: trailers'
