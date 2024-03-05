@@ -1,6 +1,6 @@
 services:
   nextcloud:
-    image: linuxserver/nextcloud:arm64v8-28.0.1
+    image: linuxserver/nextcloud:arm64v8-28.0.3
     container_name: nextcloud
     environment:
       - PUID=1000
