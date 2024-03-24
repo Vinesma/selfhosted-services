@@ -58,6 +58,9 @@ if [[ -z $rebooted ]]; then
         print_timestamp "Updating yt-dlp..."
         sudo yt-dlp -U
 
+        print_timestamp "Updating rclone..."
+        sudo rclone selfupdate
+
         print_timestamp "Stopping containers..."
         source "$repo_path/down-all.sh"
 
@@ -75,6 +78,9 @@ if [[ -z $rebooted ]]; then
 
         print_timestamp "Updating yt-dlp..."
         /usr/local/bin/yt-dlp -U
+
+        print_timestamp "Updating rclone..."
+        /usr/bin/rclone selfupdate
 
         print_timestamp "Stopping containers..."
         source "$repo_path/down-all.sh"
