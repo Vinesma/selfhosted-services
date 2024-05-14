@@ -1,5 +1,3 @@
-version: "3.5"
-
 services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:develop
