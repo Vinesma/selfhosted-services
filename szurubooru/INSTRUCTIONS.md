@@ -1,0 +1,1 @@
+[Instructions](https://github.com/rr-/szurubooru/blob/master/doc/INSTALL.md)
