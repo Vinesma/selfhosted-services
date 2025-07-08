@@ -12,5 +12,8 @@ services:
       - /path/to/syncthing/config:/config
       - /path/to/data1:/data1
       - /path/to/data2:/data2
+      - /mnt/storage/SERVICES/Syncthing/config:/config
+      - /mnt/storage/MEDIA:/media
+      - /mnt/storage/SERVICES/Syncthing/data:/data
     restart: no
     network_mode: host
