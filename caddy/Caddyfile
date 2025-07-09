@@ -1,10 +1,13 @@
 {
     email {example@host.com}
 }
-domain.com {
+(dns_tls) {
     tls {
         dns {provider} {token}
     }
+}
+domain.com {
+    import dns_tls
 
     route /{service}/* {
         uri strip_prefix /{service}
@@ -17,9 +20,8 @@ domain.com {
     reverse_proxy :{main_port}
 }
 subdomain.domain.com {
-    tls {
-        dns {provider} {token}
-    }
+    import dns_tls
+
     reverse_proxy :{main_port} {
         transport http {
             tls_insecure_skip_verify
