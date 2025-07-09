@@ -14,8 +14,8 @@ services:
       options:
         max-size: 10m
     volumes:
-      - data:/var/www/FreshRSS/data
-      - /media/pi/ExtDrive/storage/Services/Freshrss/extensions:/var/www/FreshRSS/extensions
+      - /mnt/storage/SERVICES/Freshrss/data:/var/www/FreshRSS/data
+      - /mnt/storage/SERVICES/Freshrss/extensions:/var/www/FreshRSS/extensions
     ports:
       - 8650:80
     environment:
