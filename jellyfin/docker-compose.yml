@@ -6,7 +6,7 @@ services:
     environment:
       - TZ=America/Sao_Paulo
     volumes:
-      - /media/pi/ExtDrive/storage/Services/Jellyfin/config:/config
-      - /media/pi/ExtDrive/storage/Services/Jellyfin/cache:/cache
-      - /media/pi/ExtDrive/storage/Media:/media
+      - /mnt/storage/SERVICES/Jellyfin/config:/config
+      - /mnt/storage/SERVICES/Jellyfin/cache:/cache
+      - /mnt/storage/MEDIA:/media
     restart: no
