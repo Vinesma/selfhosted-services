@@ -1,0 +1,15 @@
+services:
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: no
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./conf:/etc/caddy
+      - ./site:/srv
+      - ./data:/data
+      - ./config:/config
