@@ -6,7 +6,7 @@ services:
       - BASE_URL=https://vinesma.duckdns.org/searx/
       - INSTANCE_NAME=searxngpi
     volumes:
-      - /media/pi/ExtDrive/storage/Services/Searx/searxng:/etc/searxng
+      - /mnt/storage/SERVICES/Searx/searxng:/etc/searxng
     ports:
       - 7560:8080
     restart: no
