@@ -7,12 +7,9 @@
 * Searxng - Private search engine instance @ `vinesma.duckdns.org/searx` (requires VPN access)
 * Sonarr/Radarr/Bazarr - *arr stack for automatic media downloading
 * Gotify - Notification server
-* Kavita - Manga/Books Reader
-* Nextcloud - File management, calendar, tasks, notes
+* Komga - Manga/Books Reader
 * qBittorrent - Torrent Client
 * Caddy - Reverse proxy/automatic SSL management
-
-Almost all run using docker, exception is Caddy which is a custom build with duckdns provider that runs using systemd.
 
 ## Other
 
