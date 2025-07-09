@@ -4,8 +4,8 @@ services:
     ports:
       - 13378:80
     volumes:
-      - /media/pi/ExtDrive/storage/Media/Literature/Audiobooks:/audiobooks
-      - /media/pi/ExtDrive/storage/Media/Podcasts:/podcasts
-      - /media/pi/ExtDrive/storage/Services/Audiobookshelf/config:/config
-      - /media/pi/ExtDrive/storage/Services/Audiobookshelf/metadata:/metadata
+      - /mnt/storage/MEDIA/Literature/Audiobooks:/audiobooks
+      - /mnt/storage/MEDIA/Podcasts:/podcasts
+      - /mnt/storage/SERVICES/Audiobookshelf/config:/config
+      - /mnt/storage/SERVICES/Audiobookshelf/metadata:/metadata
     restart: no
