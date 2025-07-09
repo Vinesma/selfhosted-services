@@ -7,7 +7,7 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /media/pi/ExtDrive/storage/Services/Prowlarr/config:/config
+      - /mnt/storage/SERVICES/Prowlarr/config:/config
     ports:
       - 9696:9696
     restart: no
@@ -20,8 +20,8 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /media/pi/ExtDrive/storage/Services/Sonarr/config:/config
-      - /media/pi/ExtDrive/storage/Media:/data
+      - /mnt/storage/SERVICES/Sonarr/config:/config
+      - /mnt/storage/MEDIA:/data
     ports:
       - 8989:8989
     restart: no
@@ -34,8 +34,8 @@ services:
       - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
-      - /media/pi/ExtDrive/storage/Services/Radarr/config:/config
-      - /media/pi/ExtDrive/storage/Media:/data
+      - /mnt/storage/SERVICES/Radarr/config:/config
+      - /mnt/storage/MEDIA:/data
     ports:
       - 7878:7878
     restart: no
@@ -50,7 +50,7 @@ services:
     ports:
         - 5055:5055
     volumes:
-        - /media/pi/ExtDrive/storage/Services/Jellyseer/config:/app/config
+        - /mnt/storage/SERVICES/Jellyseer/config:/app/config
     restart: no
 
   qbittorrent:
@@ -62,8 +62,8 @@ services:
       - TZ=America/Sao_Paulo
       - WEBUI_PORT=8080
     volumes:
-      - /media/pi/ExtDrive/storage/Services/Qbittorrent/config:/config
-      - /media/pi/ExtDrive/storage/Media/Torrents:/data/Torrents
+      - /mnt/storage/SERVICES/Qbittorrent/config:/config
+      - /mnt/storage/MEDIA/Torrents:/data/Torrents
     ports:
       - 8080:8080
       - 6881:6881
