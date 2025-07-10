@@ -6,7 +6,7 @@ services:
     restart: no
     network_mode: host
     volumes:
-      - ./conf:/etc/caddy
-      - ./site:/srv
-      - ./data:/data
-      - ./config:/config
+      - /mnt/storage/SERVICES/Caddy/conf:/etc/caddy
+      - /mnt/storage/SERVICES/Caddy/site:/srv
+      - /mnt/storage/SERVICES/Caddy/data:/data
+      - /mnt/storage/SERVICES/Caddy/config:/config
