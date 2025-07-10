@@ -9,7 +9,7 @@ for FILE in *; do
     fi
 
     echo "-- UPDATING $FILE --"
-    docker compose -f "$FILE/docker-compose.yml" pull \;
+    docker compose -f "$FILE/docker-compose.yml" pull
 
     # Exceptions
     if [ "$FILE" = "szurubooru" ]; then
@@ -17,5 +17,5 @@ for FILE in *; do
     fi
 
     echo "-- STARTING $FILE --"
-    docker compose -f "$FILE/docker-compose.yml" up -d \;
+    docker compose -f "$FILE/docker-compose.yml" up -d
 done
