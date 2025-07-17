@@ -8,14 +8,10 @@ services:
       POSTGRES_HOST: sql
       POSTGRES_USER:
       POSTGRES_PASSWORD:
-      ## Commented Values are Default:
-      #POSTGRES_DB: defaults to same as POSTGRES_USER
-      #POSTGRES_PORT: 5432
-      #LOG_SQL: 0 (1 for verbose SQL logs)
       THREADS:
     volumes:
-      - "${MOUNT_DATA}:/data"
-      - "./server/config.yaml:/opt/app/config.yaml"
+      - "${SZURU_MOUNT_DATA}:/data"
+      - "${SZURU_MOUNT_CONFIG}/config.yaml:/opt/app/config.yaml"
 
   client:
     image: szurubooru/client:latest
