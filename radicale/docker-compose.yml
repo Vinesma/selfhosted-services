@@ -1,0 +1,10 @@
+services:
+  radicale:
+    image: ghcr.io/kozea/radicale:latest
+    restart: no
+    ports:
+      - '5232:5232'
+    volumes:
+      - ./data:/var/lib/radicale
+      - ./config:/etc/radicale/config:ro
+      - ./users:/etc/radicale/users:ro
