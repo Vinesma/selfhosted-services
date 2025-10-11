@@ -6,5 +6,5 @@ services:
     environment:
       - TZ=America/Sao_Paulo
     volumes:
-      - /mnt/storage/SERVICES/data:/data
+      - /mnt/storage/SERVICES/ActualBudget/data:/data
     restart: no
