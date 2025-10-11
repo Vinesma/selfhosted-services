@@ -5,6 +5,6 @@ services:
     ports:
       - '5232:5232'
     volumes:
-      - ./data:/var/lib/radicale
-      - ./config:/etc/radicale/config:ro
-      - ./users:/etc/radicale/users:ro
+      - /mnt/storage/SERVICES/Radicale/data:/var/lib/radicale
+      - /mnt/storage/SERVICES/Radicale/config:/etc/radicale/config:ro
+      - /mnt/storage/SERVICES/Radicale/users:/etc/radicale/users:ro
