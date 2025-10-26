@@ -21,5 +21,5 @@ services:
       - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
       - N8N_PROXY_HOPS=1
     volumes:
-      - ./data:/home/node/.n8n
-      - ./data/files:/files
+      - /mnt/storage/SERVICES/n8n/data:/home/node/.n8n
+      - /mnt/storage/SERVICES/n8n/files:/files
