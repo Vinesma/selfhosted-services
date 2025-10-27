@@ -23,3 +23,4 @@ services:
     volumes:
       - /mnt/storage/SERVICES/n8n/data:/home/node/.n8n
       - /mnt/storage/SERVICES/n8n/files:/files
+      - /mnt/storage/SERVICES/Syncthing/data:/server/notes
