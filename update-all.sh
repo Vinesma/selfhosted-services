@@ -16,6 +16,12 @@ for FILE in *; do
         continue
     fi
 
+    # Build
+    if [ "$FILE" = "n8n" ] || [ "$FILE" = "caddy" ]; then
+        docker compose -f "$FILE/docker-compose.yml" up -d --build
+        continue
+    fi
+
     echo "-- STARTING $FILE --"
     docker compose -f "$FILE/docker-compose.yml" up -d
 done
