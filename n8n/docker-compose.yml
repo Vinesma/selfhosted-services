@@ -24,4 +24,5 @@ services:
       - /mnt/storage/SERVICES/n8n/data:/home/node/.n8n
       - /mnt/storage/SERVICES/n8n/files:/files
       - /mnt/storage/SERVICES/Syncthing/data:/server/user_data
+      - /mnt/storage/SERVICES:/server/services
       - /mnt/storage/MEDIA:/server/user_media
