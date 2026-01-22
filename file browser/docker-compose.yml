@@ -1,0 +1,10 @@
+services:
+  file-browser:
+    image: filebrowser/filebrowser
+    ports:
+      - 8080:80
+    volumes:
+      - /path/to/data:/srv
+      - /path/to/db:/database
+      - /path/to/config:/config
+    restart: no
