@@ -2,9 +2,9 @@ services:
   file-browser:
     image: filebrowser/filebrowser
     ports:
-      - 8080:80
+      - 8686:80
     volumes:
-      - /path/to/data:/srv
-      - /path/to/db:/database
-      - /path/to/config:/config
+      - /mnt/storage:/srv
+      - /mnt/storage/SERVICES/FileBrowser/db:/database
+      - /mnt/storage/SERVICES/FileBrowser/config:/config
     restart: no
