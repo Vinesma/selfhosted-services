@@ -6,8 +6,8 @@ const fs = require("fs");
 const path = require("path");
 
 const dir = argv?.[2];
-const chapterRegex = /c(\d\d\d)/;
-const volumeRegex = /v(\d\d)/;
+const chapterRegex = /c(\d{3})/;
+const volumeRegex = /v(\d{2})/;
 
 if (!dir) {
     console.log("No directory specified, exiting...");
@@ -73,13 +73,13 @@ folders.forEach(folder => {
 });
 
 // zip chapters into .cbz
-const chapterFolders = fs
-    .readdirSync(dir)
-    .filter(item => fs.statSync(`${dir}/${item}`).isDirectory());
+// const chapterFolders = fs
+//     .readdirSync(dir)
+//     .filter(item => fs.statSync(`${dir}/${item}`).isDirectory());
 
-chapterFolders.forEach(item => {
-    execSync(`zip -rj "${dir}/${item}.cbz" "${dir}/${item}"`);
+// chapterFolders.forEach(item => {
+//     execSync(`zip -rj "${dir}/${item}.cbz" "${dir}/${item}"`);
 
-    // Remove folders that have been packed
-    fs.rmSync(`${dir}/${item}`, { recursive: true });
-});
+//     // Remove folders that have been packed
+//     fs.rmSync(`${dir}/${item}`, { recursive: true });
+// });
