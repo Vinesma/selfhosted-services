@@ -1,0 +1,30 @@
+services:
+  suwayomi:
+    image: ghcr.io/suwayomi/suwayomi-server:stable
+    user: 1000:1000
+    environment:
+      - TZ=America/Sao_Paulo
+      - FLARESOLVERR_ENABLED=true
+      - FLARESOLVERR_URL=http://flaresolverr:8191
+#    example for setting env vars:
+#
+#      - BIND_IP=0.0.0.0
+#      - BIND_PORT=4567
+#      - SOCKS_PROXY_ENABLED=false
+#      - DOWNLOAD_AS_CBZ=true
+#      - AUTH_MODE=basic_auth
+#      - AUTH_USERNAME=manga
+#      - AUTH_PASSWORD=hello123
+#      - EXTENSION_REPOS=["http://github.com/orginazation-name/repo-name", "http://github.com/orginazation-name-2/repo-name-2"]
+    volumes:
+      - ./data:/home/suwayomi/.local/share/Tachidesk
+    ports:
+      - "4567:4567"
+    restart: no
+
+  flaresolverr:
+    image: ghcr.io/thephaseless/byparr:latest
+    container_name: flaresolverr
+    environment:
+      - TZ=America/Sao_Paulo
+    restart: no
