@@ -50,7 +50,7 @@ services:
     ports:
         - 5055:5055
     volumes:
-        - /mnt/storage/SERVICES/Seer/config:/app/config
+        - /mnt/storage/SERVICES/Seerr/config:/app/config
     restart: no
 
   qbittorrent:
