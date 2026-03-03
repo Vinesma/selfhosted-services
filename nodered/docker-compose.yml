@@ -9,3 +9,6 @@ services:
       - node-red-net
     volumes:
       - ./home/data:/data
+
+networks:
+  node-red-net:
