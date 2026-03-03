@@ -11,7 +11,10 @@ services:
       - node-red-net
     restart: no
     volumes:
-      - ./home/data:/data
+      - /mnt/storage/SERVICES/Nodered/data:/data
+      - /mnt/storage/SERVICES/Syncthing/data:/server/user_data
+      - /mnt/storage/SERVICES:/server/services
+      - /mnt/storage/MEDIA:/server/user_media
 
 networks:
   node-red-net:
