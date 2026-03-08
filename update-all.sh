@@ -17,7 +17,16 @@ for FILE in *; do
     fi
 
     # Build
-    if [ "$FILE" = "n8n" ] || [ "$FILE" = "caddy" ]; then
+    if [ "$FILE" = "nodered" ]; then
+        docker pull "$(head -n 1 "$FILE"/Dockerfile | cut -d ' ' -f2)"
+        docker compose -f "$FILE/docker-compose.yml" up -d --build
+        continue
+    fi
+
+    # Build Caddy
+    if [ "$FILE" = "caddy" ]; then
+        docker pull caddy:builder
+        docker pull caddy:latest
         docker compose -f "$FILE/docker-compose.yml" up -d --build
         continue
     fi
