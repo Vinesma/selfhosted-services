@@ -1,35 +1,37 @@
 services:
-
   server:
     image: szurubooru/server:latest
+    env_file: .env
     depends_on:
       - sql
     environment:
-      POSTGRES_HOST: sql
-      POSTGRES_USER:
-      POSTGRES_PASSWORD:
-      THREADS:
+      - POSTGRES_HOST="sql"
+      - POSTGRES_USER=${POSTGRES_USER?error}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD?error}
+      - THREADS=${THREADS?error}
     volumes:
-      - "${SZURU_MOUNT_DATA}:/data"
-      - "${SZURU_MOUNT_CONFIG}/config.yaml:/opt/app/config.yaml"
+      - "${SZURU_MOUNT_DATA?error}:/data"
+      - "${SZURU_MOUNT_CONFIG?error}/config.yaml:/opt/app/config.yaml"
 
   client:
     image: szurubooru/client:latest
+    env_file: .env
     depends_on:
       - server
     environment:
-      BACKEND_HOST: server
-      BASE_URL:
+      - BACKEND_HOST="server"
+      - BASE_URL=${BASE_URL?error}
     volumes:
-      - "${SZURU_MOUNT_DATA}:/data:ro"
+      - "${SZURU_MOUNT_DATA?error}:/data:ro"
     ports:
-      - "${PORT}:80"
+      - "${PORT?error}:80"
 
   sql:
+    env_file: .env
     image: postgres:11-alpine
     restart: no
     environment:
-      POSTGRES_USER:
-      POSTGRES_PASSWORD:
+      - POSTGRES_USER=${POSTGRES_USER?error}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD?error}
     volumes:
-      - "${SZURU_MOUNT_SQL}:/var/lib/postgresql/data"
+      - "${SZURU_MOUNT_SQL?error}:/var/lib/postgresql/data"
