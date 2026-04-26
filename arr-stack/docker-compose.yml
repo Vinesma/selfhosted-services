@@ -40,19 +40,6 @@ services:
       - 7878:7878
     restart: no
 
-  seerr:
-    image: ghcr.io/seerr-team/seerr:latest
-    init: true
-    container_name: seerr
-    environment:
-        - LOG_LEVEL=debug
-        - TZ=America/Sao_Paulo
-    ports:
-        - 5055:5055
-    volumes:
-        - /mnt/storage/SERVICES/Seerr/config:/app/config
-    restart: no
-
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
