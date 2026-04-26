@@ -8,11 +8,6 @@ for FILE in *; do
         continue
     fi
 
-    # Exceptions
-    if [ "$FILE" = "szurubooru" ]; then
-        continue
-    fi
-
     echo "-- STARTING $FILE --"
     docker compose -f "$FILE/docker-compose.yml" up -d
 done

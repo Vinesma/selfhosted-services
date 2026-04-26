@@ -11,11 +11,6 @@ for FILE in *; do
     echo "-- UPDATING $FILE --"
     docker compose -f "$FILE/docker-compose.yml" pull
 
-    # Exceptions
-    if [ "$FILE" = "szurubooru" ]; then
-        continue
-    fi
-
     # Build
     if [ "$FILE" = "nodered" ]; then
         docker pull "$(head -n 1 "$FILE"/Dockerfile | cut -d ' ' -f2)"
