@@ -5,7 +5,7 @@ services:
     depends_on:
       - sql
     environment:
-      - POSTGRES_HOST=sql
+      - POSTGRES_HOST="sql"
       - POSTGRES_USER=${POSTGRES_USER?error}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD?error}
       - THREADS=${THREADS?error}
@@ -19,7 +19,7 @@ services:
     depends_on:
       - server
     environment:
-      - BACKEND_HOST=server
+      - BACKEND_HOST="server"
       - BASE_URL=${BASE_URL?error}
     volumes:
       - "${SZURU_MOUNT_DATA?error}:/data:ro"
